@@ -32,5 +32,5 @@ public class Tank : MonoBehaviour
         }
 
     }
-    [SerializeField] float rotateLerp = 0.95f;
+    [SerializeField] float rotateLerp = 0.05f;
 }
