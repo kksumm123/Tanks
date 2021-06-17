@@ -22,7 +22,7 @@ public class Tank : MonoBehaviour
             // πÊ«‚
             move.Normalize();
 
-            transform.Translate(move * speed * Time.deltaTime);
+            transform.Translate(move * speed * Time.deltaTime, Space.World);
         }
 
     }
