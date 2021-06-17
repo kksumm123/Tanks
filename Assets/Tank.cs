@@ -15,7 +15,7 @@ public class Tank : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow))
             move.x = 1;
         if (Input.GetKey(KeyCode.LeftArrow))
-            move.x = -1
+            move.x = -1;
 
         if(move.sqrMagnitude > 0)
         {
