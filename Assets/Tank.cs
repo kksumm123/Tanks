@@ -5,7 +5,7 @@ using UnityEngine;
 public class Tank : MonoBehaviour
 {
     [SerializeField] float speed = 5f;
-
+    Vector3 preMove;
     void Update()
     {
         Vector3 move = Vector3.zero;
@@ -25,8 +25,12 @@ public class Tank : MonoBehaviour
 
             transform.Translate(move * speed * Time.deltaTime, Space.World);
 
-            transform.LookAt(transform.position + move);
+            //transform.LookAt(transform.position + move);
+            transform.forward = Vector3.Slerp(transform.forward, move, rotateLerp);
+
+            preMove = move;
         }
 
     }
+    [SerializeField] float rotateLerp = 0.95f;
 }
