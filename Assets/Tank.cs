@@ -5,6 +5,7 @@ using UnityEngine;
 public class Tank : MonoBehaviour
 {
     [SerializeField] float speed = 5f;
+
     void Update()
     {
         Vector3 move = Vector3.zero;
@@ -17,12 +18,14 @@ public class Tank : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow))
             move.x = -1;
 
-        if(move.sqrMagnitude > 0)
+        if (move.sqrMagnitude > 0)
         {
             // πÊ«‚
             move.Normalize();
 
             transform.Translate(move * speed * Time.deltaTime, Space.World);
+
+            transform.LookAt(transform.position + move);
         }
 
     }

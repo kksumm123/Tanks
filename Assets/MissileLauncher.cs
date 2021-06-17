@@ -5,12 +5,14 @@ using UnityEngine;
 public class MissileLauncher : MonoBehaviour
 {
     [SerializeField] GameObject missile;
+    [SerializeField] Transform startPosition;
+    [SerializeField] Vector3 offset;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
             Debug.Assert(missile != null, "미사일 없음");
-            Instantiate(missile, transform.position, transform.rotation);
+            Instantiate(missile, startPosition.position, transform.rotation);
         }
     }
 }
