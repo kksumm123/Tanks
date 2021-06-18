@@ -9,7 +9,7 @@ public class MissileLauncher : MonoBehaviourPun
     [SerializeField] Transform startPosition;
     [SerializeField] Vector3 offset;
     [SerializeField] LayerMask layer;
-    [SerializeField] Transform canonBarrel;
+    [SerializeField] Transform tankTurret;
     void Update()
     {
         if (photonView.IsMine == false)
@@ -20,16 +20,16 @@ public class MissileLauncher : MonoBehaviourPun
         //    Debug.Assert(missile != null, "미사일 없음");
         //    PhotonNetwork.Instantiate(missile.name, startPosition.position, transform.rotation, 0);
         //}
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if(Physics.Raycast(ray, out RaycastHit hitData,1000, layer))
             {
                 var desPos = hitData.point;
                 var dir = desPos - transform.position;
-                canonBarrel.forward = dir;
+                tankTurret.forward = dir;
                 //dir 방향으로 포신 돌리기
-                Instantiate(missile, startPosition.position, canonBarrel.rotation);
+                Instantiate(missile, startPosition.position, tankTurret.rotation);
             }
         }
     }
