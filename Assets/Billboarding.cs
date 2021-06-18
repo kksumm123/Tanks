@@ -12,14 +12,13 @@ public class Billboarding : MonoBehaviour
         parent = transform.parent;
         transform.parent = null;
     }
-    void Update()
+    void LateUpdate()
     {
         if (parent == null)
         {
             Destroy(gameObject);
             return;
         }
-
         transform.position = parent.position - offset;
     }
 }
