@@ -5,13 +5,15 @@ using UnityEngine;
 public class cammove : MonoBehaviour
 {
     [SerializeField] Transform tankTr;
-    [SerializeField] float camSpeed = 1f;
+    [SerializeField] float camSpeed = 3f;
     Vector3 offset;
     private void Start()
     {
-        offset.x = transform.position.x - tankTr.position.x;
-        offset.y = transform.position.y - tankTr.position.y;
-        offset.z = transform.position.z - tankTr.position.z;
+
+        //offset.x = transform.position.x - tankTr.position.x;
+        //offset.y = transform.position.y - tankTr.position.y;
+        //offset.z = transform.position.z - tankTr.position.z;
+        offset = transform.position - tankTr.position;
         Debug.Log("::" + offset);
     }
 
@@ -20,16 +22,12 @@ public class cammove : MonoBehaviour
         //var pos = tankTr.position;
 
         //transform.position = (tankTr.position + offset);
+        var distance = tankTr.position + offset - transform.position;
 
-        if (tankTr.position.y == 0)
-        {
-            var distance = (tankTr.position + offset) - transform.position;
+        //distance.x *= Time.deltaTime * camSpeed;
+        //distance.y = 0f;
+        //distance.z *= Time.deltaTime * camSpeed;
 
-            distance.x *= Time.deltaTime * camSpeed;
-            distance.y = 0f;
-            distance.z *= Time.deltaTime * camSpeed;
-
-            transform.Translate(distance);
-        }
+        transform.Translate(distance * Time.deltaTime * camSpeed, Space.World);
     }
 }
