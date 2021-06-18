@@ -86,5 +86,8 @@ public class JoinOrCreateRoomUI : MonoBehaviourPunCallbacks
         // 게임 UI보여주자.
         IsInRoom = true;
         photonView.RPC(nameof(ReceiveMessage), RpcTarget.All, $"{PhotonNetwork.LocalPlayer.NickName} 방에 들어옴");
+
+        // 유저가 들어오면 조정가능한 탱크를 소환하자
+
     }
 }
