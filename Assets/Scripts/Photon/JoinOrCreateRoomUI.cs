@@ -59,6 +59,7 @@ public class JoinOrCreateRoomUI : MonoBehaviourPunCallbacks
     [SerializeField]
     private string gameVersion = "1";
 
+
     bool IsInRoom
     {
         set
@@ -88,6 +89,15 @@ public class JoinOrCreateRoomUI : MonoBehaviourPunCallbacks
         photonView.RPC(nameof(ReceiveMessage), RpcTarget.All, $"{PhotonNetwork.LocalPlayer.NickName} 방에 들어옴");
 
         // 유저가 들어오면 조정가능한 탱크를 소환하자
+        //PhotonNetwork.Instantiate(this.tankPrefabName, new Vector3(0, 0, 0), Quaternion.identity, 0);
+        PhotonNetwork.Instantiate(tankPrefabName
+            , new Vector3(
+                Random.Range(-randomRange, randomRange)
+                , 0
+                , Random.Range(-randomRange, randomRange)
+                ), Quaternion.identity, 0);
 
     }
+    [SerializeField] private string tankPrefabName = "Tank";
+    [SerializeField] float randomRange = 5;
 }

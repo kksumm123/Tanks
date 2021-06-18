@@ -1,18 +1,22 @@
+Ôªøusing Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MissileLauncher : MonoBehaviour
+public class MissileLauncher : MonoBehaviourPun
 {
     [SerializeField] GameObject missile;
     [SerializeField] Transform startPosition;
     [SerializeField] Vector3 offset;
     void Update()
     {
+        if (photonView.IsMine == false)
+            return;
+
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            Debug.Assert(missile != null, "πÃªÁ¿œ æ¯¿Ω");
-            Instantiate(missile, startPosition.position, transform.rotation);
+            Debug.Assert(missile != null, "ÎØ∏ÏÇ¨Ïùº ÏóÜÏùå");
+            PhotonNetwork.Instantiate(missile.name, startPosition.position, transform.rotation, 0);
         }
     }
 }
